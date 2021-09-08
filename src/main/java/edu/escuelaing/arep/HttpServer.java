@@ -59,7 +59,7 @@ public class HttpServer {
         }
         else if(UrlStr.contains("/consulta?lugar=")){
             String site = URL+UrlStr.replace("/consulta?lugar=","")+ApiKey;
-            outputLine=Json(site);
+            outputLine= Json(site);
             System.out.println(outputLine);
             printWriter.println(outputLine);
         }
