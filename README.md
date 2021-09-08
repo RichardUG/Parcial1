@@ -49,7 +49,7 @@ java -version
 ### Despliegue directo en heroku
 > Para desplegar el programa directamente desde el servicio de ```Heroku``` damos clic al siguiente link.
 > 
-> [![](/img/deploy.PNG)](hhttps://parcial1urrea.herokuapp.com/clima)
+> [![](/img/deploy.PNG)](https://parcial1urrea.herokuapp.com/clima)
 
 ## Construido con
 
