@@ -1,6 +1,6 @@
-# Taller Heroku
+# TALLER DE VERIFICACIÓN DE CONOCIMIENTOS TÉCNICOS - PARCIAL
 
-> Taller para aprender a realizar peticiones consecutivas a un servidor, además de usar encabezados ```HTTP```, accediendo a archivos locales del programa, leyendolos y desplegandolos, todo a través de protocolos ```HTTP``` con servicios ```get``` 
+> Realizar peticiones a un servidor, para que con el uso de encabezados ```HTTP```, haga consulta a una API, lea sus datos en formato ```JSON``` y los retorne a la aplicaión, se trae de ```https://openweathermap.org/current#name```
 
 ### Pre-requisitos
 
@@ -43,13 +43,13 @@ java -version
 >
 > 3. Ahora tras haber realizado los pasos anteriores, podemos ver el despliegue de nuestro proycto yendo al siguiente link:
 > 
-> [http://localhost:5000/hello](http://localhost:35000/index.js)
+> [http://localhost:5000/hello](http://localhost:4597/clima)
 > 
 
 ### Despliegue directo en heroku
 > Para desplegar el programa directamente desde el servicio de ```Heroku``` damos clic al siguiente link.
 > 
-> [![](/img/deploy.PNG)](https://clientesyservicios.herokuapp.com/index.js)
+> [![](/img/deploy.PNG)](hhttps://parcial1urrea.herokuapp.com/clima)
 
 ## Construido con
 
