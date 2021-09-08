@@ -56,12 +56,14 @@ public class HttpServer {
         if (UrlStr.equals("/clima")){
             outputLine=Clima();
             printWriter.println(outputLine);
+            printWriter.close();
         }
         else if(UrlStr.contains("/consulta?lugar=")){
             String site = URL+UrlStr.replace("/consulta?lugar=","")+ApiKey;
             outputLine= Json(site);
             System.out.println(outputLine);
             printWriter.println(outputLine);
+            printWriter.close();
         }
 
     }
