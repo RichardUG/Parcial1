@@ -50,31 +50,35 @@ public class HttpServer {
         if(request.size()>0) {
             UrlStr = request.get(0).split(" ")[1];
         }
-        try {
-            if (UrlStr.equals("/clima")) {
-                outputLine = Clima();
-                printWriter.println(outputLine);
-                printWriter.close();
-            } else if (UrlStr.contains("/consulta?lugar=")) {
-                String site = URL + UrlStr.replace("/consulta?lugar=", "") + ApiKey;
+        if (UrlStr.equals("/clima")){
+            outputLine=Clima();
+            printWriter.println(outputLine);
+            printWriter.close();
+        }
+        else if(UrlStr.contains("/consulta?lugar=")){
+            String site = URL + UrlStr.replace("/consulta?lugar=", "") + ApiKey;
+            String Json = Json(site);
+            if(!Json.equals("")) {
                 outputLine = "HTTP/1.1 200 OK\r\n" +
                         "Content-Type: application/json \r\n" +
                         "\r\n" +
-                        Json(site);
-                System.out.println(outputLine);
-                printWriter.println(outputLine);
-                printWriter.close();
+                        Json;
             }
-        }catch (FileNotFoundException ex){
-            outputLine=Error(UrlStr);
+            else {
+                outputLine=Error(UrlStr);
+            }
+            System.out.println(outputLine);
             printWriter.println(outputLine);
             printWriter.close();
         }
 
+
     }
 
     public String Error(String UrlStr){
-        String outputline=
+        String outputline="HTTP/1.1 200 OK\r\n"
+                + "Content - Type: text/html\r\n"
+                + "\r\n" +
                 "<!DOCTYPE html>\n" +
                 "<html lang=\"en\">\n" +
                 "<head>\n" +
@@ -83,7 +87,7 @@ public class HttpServer {
                 "</head>\n" +
                 "<center>\n" +
                 "    <body>\n" +
-                "        <br> <b><big><FONT COLOR=\"white\" size=\"500\"> The requested URL "+UrlStr+" not found  on this server</FONT></big></b>\n" +
+                "        <br> <b><big><FONT COLOR=\"black\" size=\"500\"> The requested URL "+UrlStr+" not found  on this server</FONT></big></b>\n" +
                 "    </body>\n" +
                 "</center>\n";
         return outputline;
