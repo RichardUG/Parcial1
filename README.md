@@ -43,7 +43,7 @@ java -version
 >
 > 3. Ahora tras haber realizado los pasos anteriores, podemos ver el despliegue de nuestro proycto yendo al siguiente link:
 > 
-> [http://localhost:5000/hello](http://localhost:4597/clima)
+> [http://localhost:5000/hello](http://localhost:4567/clima)
 > 
 
 ### Despliegue directo en heroku
