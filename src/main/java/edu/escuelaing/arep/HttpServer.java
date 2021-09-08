@@ -1,9 +1,6 @@
 package edu.escuelaing.arep;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.URL;
@@ -53,19 +50,43 @@ public class HttpServer {
         if(request.size()>0) {
             UrlStr = request.get(0).split(" ")[1];
         }
-        if (UrlStr.equals("/clima")){
-            outputLine=Clima();
+        try {
+            if (UrlStr.equals("/clima")) {
+                outputLine = Clima();
+                printWriter.println(outputLine);
+                printWriter.close();
+            } else if (UrlStr.contains("/consulta?lugar=")) {
+                String site = URL + UrlStr.replace("/consulta?lugar=", "") + ApiKey;
+                outputLine = "HTTP/1.1 200 OK\r\n" +
+                        "Content-Type: application/json \r\n" +
+                        "\r\n" +
+                        Json(site);
+                System.out.println(outputLine);
+                printWriter.println(outputLine);
+                printWriter.close();
+            }
+        }catch (FileNotFoundException ex){
+            outputLine=Error(UrlStr);
             printWriter.println(outputLine);
             printWriter.close();
         }
-        else if(UrlStr.contains("/consulta?lugar=")){
-            String site = URL+UrlStr.replace("/consulta?lugar=","")+ApiKey;
-            outputLine= Json(site);
-            System.out.println(outputLine);
-            printWriter.println("outputLine");
-            printWriter.close();
-        }
 
+    }
+
+    public String Error(String UrlStr){
+        String outputline=
+                "<!DOCTYPE html>\n" +
+                "<html lang=\"en\">\n" +
+                "<head>\n" +
+                "    <meta charset=\"utf-8\">\n" +
+                "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">\n" +
+                "</head>\n" +
+                "<center>\n" +
+                "    <body>\n" +
+                "        <br> <b><big><FONT COLOR=\"white\" size=\"500\"> The requested URL "+UrlStr+" not found  on this server</FONT></big></b>\n" +
+                "    </body>\n" +
+                "</center>\n";
+        return outputline;
     }
 
     public String Clima(){
@@ -113,6 +134,7 @@ public class HttpServer {
             while ((inputLine = reader.readLine()) != null) {
                 JSON.append(inputLine);
             }
+            reader.close();
         } catch (IOException x) {
             System.err.println(x);
         }
